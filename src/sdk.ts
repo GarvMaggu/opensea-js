@@ -820,7 +820,7 @@ export class OpenSeaSDK {
       collectionSellerFee,
     ].filter((item): item is ConsiderationInputItem => item !== undefined);
 
-    const data= await this.seaport.createOrder(
+    const data = await this.seaport.createOrder(
       {
         offer: [
           {
@@ -1010,7 +1010,6 @@ export class OpenSeaSDK {
       });
     }
 
-    let transactionHash: string;
     let data: any;
     switch (order.protocolAddress) {
       case CROSS_CHAIN_SEAPORT_ADDRESS: {
