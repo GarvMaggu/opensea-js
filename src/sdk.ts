@@ -790,7 +790,7 @@ export class OpenSeaSDK {
     quantity?: BigNumberInput;
     expirationTime?: BigNumberInput;
     paymentTokenAddress?: string;
-  }): Promise<OrderV2> {
+  }): Promise<any> {
     if (!asset.tokenId) {
       throw new Error("Asset must have a tokenId");
     }
@@ -820,7 +820,7 @@ export class OpenSeaSDK {
       collectionSellerFee,
     ].filter((item): item is ConsiderationInputItem => item !== undefined);
 
-    const { executeAllActions } = await this.seaport.createOrder(
+    const data= await this.seaport.createOrder(
       {
         offer: [
           {
@@ -838,9 +838,10 @@ export class OpenSeaSDK {
       },
       accountAddress
     );
-    const order = await executeAllActions();
+    return data;
+    // const order = await executeAllActions();
 
-    return this.api.postOrder(order, { protocol: "seaport", side: "bid" });
+    // return this.api.postOrder(order, { protocol: "seaport", side: "bid" });
   }
 
   /**
@@ -995,7 +996,7 @@ export class OpenSeaSDK {
     order: OrderV2;
     accountAddress: string;
     recipientAddress?: string;
-  }): Promise<string> {
+  }): Promise<any> {
     const isPrivateListing = !!order.taker;
     if (isPrivateListing) {
       if (recipientAddress) {
@@ -1010,27 +1011,28 @@ export class OpenSeaSDK {
     }
 
     let transactionHash: string;
+    let data: any;
     switch (order.protocolAddress) {
       case CROSS_CHAIN_SEAPORT_ADDRESS: {
-        const { executeAllActions } = await this.seaport.fulfillOrder({
+        data = await this.seaport.fulfillOrder({
           order: order.protocolData,
           accountAddress,
           recipientAddress,
         });
-        const transaction = await executeAllActions();
-        transactionHash = transaction.hash;
+        // const transaction = await executeAllActions();
+        // transactionHash = transaction.hash;
         break;
       }
       default:
         throw new Error("Unsupported protocol");
     }
 
-    await this._confirmTransaction(
-      transactionHash,
-      EventType.MatchOrders,
-      "Fulfilling order"
-    );
-    return transactionHash;
+    // await this._confirmTransaction(
+    //   transactionHash,
+    //   EventType.MatchOrders,
+    //   "Fulfilling order"
+    // );
+    return data;
   }
 
   /**
