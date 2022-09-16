@@ -1,6 +1,6 @@
-import { PartialReadonlyContractAbi } from "../types";
+import { AbiItem } from "web3-utils";
 
-export const CanonicalWETH: PartialReadonlyContractAbi = [
+export const CanonicalWETH: AbiItem[] = [
   {
     constant: true,
     inputs: [],

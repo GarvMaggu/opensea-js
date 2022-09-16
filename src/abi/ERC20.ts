@@ -1,6 +1,6 @@
-import { PartialReadonlyContractAbi } from "../types";
+import { AbiItem } from "web3-utils";
 
-export const ERC20: PartialReadonlyContractAbi = [
+export const ERC20: AbiItem[] = [
   {
     constant: true,
     inputs: [],

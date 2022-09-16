@@ -1,6 +1,6 @@
-import { PartialReadonlyContractAbi } from "../types";
+import { AbiItem } from "web3-utils";
 
-export const WrappedNFTLiquidationProxy: PartialReadonlyContractAbi = [
+export const WrappedNFTLiquidationProxy: AbiItem[] = [
   {
     constant: false,
     inputs: [

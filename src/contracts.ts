@@ -1,8 +1,8 @@
+import { AbiItem } from "web3-utils";
 import type { AnnotatedFunctionABI } from "wyvern-js/lib/types";
-import type { PartialReadonlyContractAbi } from "./types";
 
 export const getMethod = (
-  abi: PartialReadonlyContractAbi,
+  abi: AbiItem[],
   name: string
 ): AnnotatedFunctionABI => {
   const methodAbi = abi.find((x) => x.type == "function" && x.name == name);

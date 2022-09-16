@@ -1,4 +1,4 @@
-import { PartialReadonlyContractAbi } from "../types";
+import { AbiItem } from "web3-utils";
 import UniswapFactoryAbi from "./UniswapFactoryAbi.json";
 
-export const UniswapFactory = UniswapFactoryAbi as PartialReadonlyContractAbi;
+export const UniswapFactory = UniswapFactoryAbi as AbiItem[];

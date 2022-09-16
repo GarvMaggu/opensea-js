@@ -12,6 +12,7 @@ import { providers } from "ethers";
 import { EventEmitter, EventSubscription } from "fbemitter";
 import * as _ from "lodash";
 import Web3 from "web3";
+import { AbiItem } from "web3-utils";
 import { WyvernProtocol } from "wyvern-js";
 import * as WyvernSchemas from "wyvern-schemas";
 import { Schema } from "wyvern-schemas/dist/types";
@@ -91,7 +92,6 @@ import {
   OpenSeaFungibleToken,
   Order,
   OrderSide,
-  PartialReadonlyContractAbi,
   RawWyvernOrderJSON,
   SaleKind,
   TokenStandardVersion,
@@ -1247,7 +1247,7 @@ export class OpenSeaSDK {
     tokenAddress: string;
     accountAddress: string;
     proxyAddress?: string;
-    tokenAbi?: PartialReadonlyContractAbi;
+    tokenAbi?: AbiItem[];
     skipApproveAllIfTokenAddressIn?: Set<string>;
     schemaName?: WyvernSchemaName;
   }): Promise<string | null> {
